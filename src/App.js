@@ -6,7 +6,8 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
-
+import ForgotPassword from "./components/ForgotPassword";
+import UpdateProfile from "./components/UpdateProfile";
 function App() {
   return (
     <Container
@@ -26,8 +27,24 @@ function App() {
                   </PrivateRoute>
                 }
               />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
+              <Route
+                path="/signup"
+                element={
+                  <PrivateRoute reddirectTo="/" reverse={true}>
+                    <Signup />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <PrivateRoute reddirectTo="/" reverse={true}>
+                    <Login />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/update-profile" element={<UpdateProfile />} />
             </Routes>
           </AuthProvider>
         </Router>
